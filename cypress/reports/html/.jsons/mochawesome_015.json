@@ -1,0 +1,162 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 4,
+    "passes": 4,
+    "pending": 0,
+    "failures": 0,
+    "start": "2023-11-01T08:42:37.764Z",
+    "end": "2023-11-01T08:42:40.752Z",
+    "duration": 2988,
+    "testsRegistered": 4,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "612d1f04-168f-4861-8f98-1f6683910cd7",
+      "title": "",
+      "fullFile": "cypress\\integration\\examples\\API Testing\\HTTPRequest.js",
+      "file": "cypress\\integration\\examples\\API Testing\\HTTPRequest.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "0be721c6-b278-49b0-9438-cdb0a7eb96a6",
+          "title": "HTTP Request",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "GET Request",
+              "fullTitle": "HTTP Request GET Request",
+              "timedOut": null,
+              "duration": 858,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request('GET', 'https://reqres.in/api/users?page=2').its('status').should('equal', 200);",
+              "err": {},
+              "uuid": "c9806f4a-8901-4786-85a5-c047f7bc28a5",
+              "parentUUID": "0be721c6-b278-49b0-9438-cdb0a7eb96a6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "POST Request",
+              "fullTitle": "HTTP Request POST Request",
+              "timedOut": null,
+              "duration": 574,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  method: 'POST',\n  url: 'https://reqres.in/api/users?page=2',\n  body: {\n    name: \"Arindam\",\n    job: \"SDET\"\n  }\n}).its('status').should('equal', 201);",
+              "err": {},
+              "uuid": "4210b980-2602-461c-96c0-7cd33dd1f629",
+              "parentUUID": "0be721c6-b278-49b0-9438-cdb0a7eb96a6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "PUT Request",
+              "fullTitle": "HTTP Request PUT Request",
+              "timedOut": null,
+              "duration": 531,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  method: 'PUT',\n  url: 'https://reqres.in/api/users/640',\n  body: {\n    name: \"Arindam\",\n    job: \"Senior SDET\"\n  }\n}).its('status').should('equal', 200);",
+              "err": {},
+              "uuid": "b938c477-fc02-4435-b45a-68133f926104",
+              "parentUUID": "0be721c6-b278-49b0-9438-cdb0a7eb96a6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "DELETE Request",
+              "fullTitle": "HTTP Request DELETE Request",
+              "timedOut": null,
+              "duration": 929,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  method: 'DELETE',\n  url: 'https://reqres.in/api/users/640'\n}).its('status').should('equal', 204);",
+              "err": {},
+              "uuid": "2dd34080-3361-4446-95b2-b239cbb012d0",
+              "parentUUID": "0be721c6-b278-49b0-9438-cdb0a7eb96a6",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "c9806f4a-8901-4786-85a5-c047f7bc28a5",
+            "4210b980-2602-461c-96c0-7cd33dd1f629",
+            "b938c477-fc02-4435-b45a-68133f926104",
+            "2dd34080-3361-4446-95b2-b239cbb012d0"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 2892,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "reportDir": "cypress\\reports\\html\\.jsons"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

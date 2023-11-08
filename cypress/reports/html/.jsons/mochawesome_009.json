@@ -1,0 +1,109 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2023-10-29T08:24:22.523Z",
+    "end": "2023-10-29T08:24:34.922Z",
+    "duration": 12399,
+    "testsRegistered": 1,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "272c3a20-46c8-4132-af58-c7f7d76092b9",
+      "title": "",
+      "fullFile": "cypress\\integration\\examples\\Test3.js",
+      "file": "cypress\\integration\\examples\\Test3.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "0e2a1b5f-2783-4733-a355-0c12e4bc8b38",
+          "title": "My Third Test Suite",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "My Third test case",
+              "fullTitle": "My Third Test Suite My Third test case",
+              "timedOut": null,
+              "duration": 2970,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": "{\n  \"title\": \"cypress-mochawesome-reporter-screenshots\",\n  \"value\": [\n    [\n      \"\\\\Test3.js\\\\My Third Test Suite -- My Third test case (failed).png\"\n    ],\n    [\n      \"\\\\Test3.js\\\\My Third Test Suite -- My Third test case (failed) (attempt 2).png\"\n    ]\n  ]\n}",
+              "code": "// check boxes\ncy.visit(\"https://rahulshettyacademy.com/AutomationPractice/\");\ncy.get('#checkBoxOption1').check().should('be.checked').and('have.value', 'option1'); // and use for multiple should assertions for behaving we'll use be.(dot) and for comparing we'll use have.(dot)\ncy.get('#checkBoxOption1').uncheck().should('not.be.checked');\ncy.get('input[type=\"checkbox\"]').check(['option2', 'option3']); // check method takes an argument inside array like which values i need to check.\n//static dropdown\ncy.get('#dropdown-class-example').select('option2').should('have.value', 'option2'); // after select verify that option2 is selected or not using it's value\n//Dynamic dropdown\ncy.get('#autocomplete').type('Ind');\ncy.get('.ui-menu-item div').each(function ($el, index, $list) {\n  if ($el.text() === \"India\") {\n    cy.wrap($el).click();\n  }\n});\ncy.get('#autocomplete').should('have.value', 'India');\n//element visible or not\ncy.get('#displayed-text').should('be.visible');\ncy.get('#hide-textbox').click();\ncy.get('#displayed-text').should('not.be.visible');\ncy.get('#show-textbox').click();\ncy.get('#displayed-text').should('be.visible');\n//click into radio button\n//cy.get('input[type=\"radio\"]').check();\ncy.get('input[value=\"radio2\"]').check().should('be.checked');\n//switch into new tab\ncy.get('#opentab').click();\n// Use window.open() to open a new tab and capture its reference\ncy.window().then(function (win) {\n  win.open('https://www.qaclickacademy.com');\n}).then(function (newTab) {\n  // Switch to the newly opened tab\n  cy.window().then(function (win) {\n    win.location.href.should('eq', 'https://www.qaclickacademy.com'); // Verify that you are in the new tab\n  });\n  cy.wait(30000);\n  cy.get('#navbarSupportedContent > ul > li:nth-child(4) > a').click();\n});",
+              "err": {
+                "message": "TypeError: win.location.href.should is not a function",
+                "estack": "TypeError: win.location.href.should is not a function\n    at Context.eval (cypress/integration/examples/Test3.js:46:24)",
+                "diff": null
+              },
+              "uuid": "b2b5863b-6524-42ae-91e8-dd8bf66eb2d2",
+              "parentUUID": "0e2a1b5f-2783-4733-a355-0c12e4bc8b38",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "b2b5863b-6524-42ae-91e8-dd8bf66eb2d2"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 2970,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "reportDir": "cypress\\reports\\html\\.jsons"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

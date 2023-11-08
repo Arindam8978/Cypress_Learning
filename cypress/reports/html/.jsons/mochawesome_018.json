@@ -1,0 +1,105 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2023-11-01T09:34:51.056Z",
+    "end": "2023-11-01T09:34:51.670Z",
+    "duration": 614,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "21bef53a-cb96-498e-a891-92b4df1f2996",
+      "title": "",
+      "fullFile": "cypress\\integration\\examples\\APITesting\\POSTCall.js",
+      "file": "cypress\\integration\\examples\\APITesting\\POSTCall.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "ea38023f-fa6c-4c21-900c-d63d7d6af225",
+          "title": "API Testing",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Approach-1 Hard coded json object",
+              "fullTitle": "API Testing Approach-1 Hard coded json object",
+              "timedOut": null,
+              "duration": 570,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "var responseBody = {\n  tourist_name: \"MSD\",\n  tourist_email: \"INDACAP@gmail.com\",\n  tourist_location: \"India\"\n};\ncy.request({\n  method: 'POST',\n  url: 'http://restapi.adequateshop.com/api/Tourist',\n  body: responseBody\n}).then(function (response) {\n  expect(response.status).to.eq(201);\n  expect(response.body.tourist_name).to.eq(\"MSD\");\n  expect(response.body.tourist_email).to.eq(\"INDACAP@gmail.com\");\n  expect(response.body.tourist_location).to.eq(\"India\");\n});",
+              "err": {},
+              "uuid": "1292e5ab-72a1-46f9-974e-aa5bb6838433",
+              "parentUUID": "ea38023f-fa6c-4c21-900c-d63d7d6af225",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "1292e5ab-72a1-46f9-974e-aa5bb6838433"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 570,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "reportDir": "cypress\\reports\\html\\.jsons"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

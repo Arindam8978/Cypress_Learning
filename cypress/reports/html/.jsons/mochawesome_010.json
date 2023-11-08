@@ -1,0 +1,105 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2023-10-29T08:24:36.488Z",
+    "end": "2023-10-29T08:24:50.345Z",
+    "duration": 13857,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "3961bdfd-db2c-40cb-af14-147149f729cf",
+      "title": "",
+      "fullFile": "cypress\\integration\\examples\\Test4.js",
+      "file": "cypress\\integration\\examples\\Test4.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "9d718228-940c-4db2-9bd4-6ee5aca0fef7",
+          "title": "My Fourth Test Suite",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "The Fourth Mouse hover test inside fourth",
+              "fullTitle": "My Fourth Test Suite The Fourth Mouse hover test inside fourth",
+              "timedOut": null,
+              "duration": 9846,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"https://www.amazon.in/\");\n/*   Handle web mouse hover - there is no direct mouse hover is support in cypress so we can handle it via jQuery functions\n  mouse hover event are not supported in cypress alternatively use jquery or force click */\n//cy.get('div.mouse-hover-content').invoke('show');\n// cy.contains('Top').click({force : true}); // if there is any hidden element then we can force it to true then click.\n// cy.url().should('include','top');\n// cy.get(\"#mousehover\").trigger('mouseover');\n// cy.wait(2000);\n// cy.get('a[href*=\"top\"]').click({force : true}); // Click the element after hovering\ncy.get(\"#nav-tools>a:nth-child(2)>span\").trigger('mouseover');\ncy.get('#nav-flyout-ya-signin>a span.nav-action-inner').click();",
+              "err": {},
+              "uuid": "5b008e37-fbdb-41bb-804f-e44b24ca0091",
+              "parentUUID": "9d718228-940c-4db2-9bd4-6ee5aca0fef7",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "5b008e37-fbdb-41bb-804f-e44b24ca0091"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 9846,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "reportDir": "cypress\\reports\\html\\.jsons"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

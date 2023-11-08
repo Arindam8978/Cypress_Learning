@@ -1,0 +1,109 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2023-10-29T08:23:55.005Z",
+    "end": "2023-10-29T08:23:57.147Z",
+    "duration": 2142,
+    "testsRegistered": 1,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "ca8f0f49-ce5a-4a6b-8c0f-c2321588de16",
+      "title": "",
+      "fullFile": "cypress\\integration\\examples\\APITesting copy 2.js",
+      "file": "cypress\\integration\\examples\\APITesting copy 2.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "da8a1790-3e64-459f-b317-90333f578fe4",
+          "title": "API Mocking",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Mock the API",
+              "fullTitle": "API Mocking Mock the API",
+              "timedOut": null,
+              "duration": 843,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": "{\n  \"title\": \"cypress-mochawesome-reporter-screenshots\",\n  \"value\": [\n    [\n      \"\\\\APITesting copy 2.js\\\\API Mocking -- Mock the API (failed).png\"\n    ],\n    [\n      \"\\\\APITesting copy 2.js\\\\API Mocking -- Mock the API (failed) (attempt 2).png\"\n    ]\n  ]\n}",
+              "code": "cy.request('POST', ' http://216.10.245.166/Library/Addbook.php', {\n  \"name\": \"Learn Appium Automation with Java\",\n  \"isbn\": \"bcerd\",\n  \"aisle\": \"297\",\n  \"author\": \"John foe\"\n}).then(function (response) {\n  expect(response.body).to.have.property(\"Msg\", \"successfully added\");\n  expect(response.status).to.eq(200);\n});",
+              "err": {
+                "message": "AssertionError: expected { Object (Msg, ID) } to have property 'Msg' of 'successfully added', but got 'Book Already Exists'",
+                "estack": "AssertionError: expected { Object (Msg, ID) } to have property 'Msg' of 'successfully added', but got 'Book Already Exists'\n    at Context.eval (cypress/integration/examples/APITesting copy 2.js:11:42)",
+                "diff": "- 'Book Already Exists'\n+ 'successfully added'\n"
+              },
+              "uuid": "96c9881b-caeb-4c63-9a26-cff2c23960ea",
+              "parentUUID": "da8a1790-3e64-459f-b317-90333f578fe4",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "96c9881b-caeb-4c63-9a26-cff2c23960ea"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 843,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "reportDir": "cypress\\reports\\html\\.jsons"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

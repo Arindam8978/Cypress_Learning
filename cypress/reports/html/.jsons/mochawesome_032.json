@@ -1,0 +1,105 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2023-11-02T09:36:26.785Z",
+    "end": "2023-11-02T09:36:28.488Z",
+    "duration": 1703,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "8cfc264e-41fb-48f2-b967-a0e154826f34",
+      "title": "",
+      "fullFile": "cypress\\e2e\\examples\\APITesting\\JSONSchemaValidation.cy.js",
+      "file": "cypress\\e2e\\examples\\APITesting\\JSONSchemaValidation.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "89e9e990-fbdb-4611-b4b5-c27458bd61a4",
+          "title": "Schema validation",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Schema validation against response",
+              "fullTitle": "Schema validation Schema validation against response",
+              "timedOut": null,
+              "duration": 1647,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  method: 'GET',\n  url: 'https://fakestoreapi.com/products'\n}).then(function (response) {\n  var schema = {\n    \"$schema\": \"http://json-schema.org/draft-07/schema#\",\n    \"title\": \"Generated schema for Root\",\n    \"type\": \"array\",\n    \"items\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"id\": {\n          \"type\": \"number\"\n        },\n        \"title\": {\n          \"type\": \"string\"\n        },\n        \"price\": {\n          \"type\": \"number\"\n        },\n        \"description\": {\n          \"type\": \"string\"\n        },\n        \"category\": {\n          \"type\": \"string\"\n        },\n        \"image\": {\n          \"type\": \"string\"\n        },\n        \"rating\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"rate\": {\n              \"type\": \"number\"\n            },\n            \"count\": {\n              \"type\": \"number\"\n            }\n          },\n          \"required\": [\"rate\", \"count\"]\n        }\n      },\n      \"required\": [\"id\", \"title\", \"price\", \"description\", \"category\", \"image\", \"rating\"]\n    }\n  }; //schema end\n  var validate = ajv.compile(schema); //this will check the response is according to the schema or not?\n  var isValid = validate(response.body);\n  expect(isValid).to.be[\"true\"];\n});",
+              "err": {},
+              "uuid": "e41b084f-b089-4f1c-8dfa-12a25f29ed6b",
+              "parentUUID": "89e9e990-fbdb-4611-b4b5-c27458bd61a4",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "e41b084f-b089-4f1c-8dfa-12a25f29ed6b"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 1647,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "reportDir": "cypress\\reports\\html\\.jsons"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2023-11-01T10:03:04.986Z",
+    "end": "2023-11-01T10:03:05.681Z",
+    "duration": 695,
+    "testsRegistered": 1,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "18b738c4-c965-4ec5-a7c6-ddd83c3c259b",
+      "title": "",
+      "fullFile": "cypress\\integration\\examples\\APITesting\\POSTCall.js",
+      "file": "cypress\\integration\\examples\\APITesting\\POSTCall.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "992f5f79-dc60-4223-8ad1-cb85fac4854c",
+          "title": "API Testing",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Approach-3 getting JSON data from fixture file",
+              "fullTitle": "API Testing Approach-3 getting JSON data from fixture file",
+              "timedOut": null,
+              "duration": 342,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": "{\n  \"title\": \"cypress-mochawesome-reporter-screenshots\",\n  \"value\": [\n    [\n      \"\\\\POSTCall.js\\\\API Testing -- Approach-3 getting JSON data from fixture file (failed).png\"\n    ],\n    [\n      \"\\\\POSTCall.js\\\\API Testing -- Approach-3 getting JSON data from fixture file (failed) (attempt 2).png\"\n    ]\n  ]\n}",
+              "code": "cy.fixture('tourist').then(function (fixturesData) {\n  data = fixturesData;\n});\ncy.request({\n  method: 'POST',\n  url: 'http://restapi.adequateshop.com/api/Tourist',\n  body: requestBody\n}).then(function (response) {\n  expect(response.status).to.eq(201);\n  expect(response.body.tourist_name).to.eq(data.tourist_name);\n  expect(response.body.tourist_email).to.eq(data.tourist_email);\n  expect(response.body.tourist_location).to.eq(data.tourist_location);\n});",
+              "err": {
+                "message": "ReferenceError: requestBody is not defined",
+                "estack": "ReferenceError: requestBody is not defined\n    at Context.eval (cypress/integration/examples/APITesting/POSTCall.js:51:15)",
+                "diff": null
+              },
+              "uuid": "8488a47d-fe81-4230-9ac8-36295665af96",
+              "parentUUID": "992f5f79-dc60-4223-8ad1-cb85fac4854c",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "8488a47d-fe81-4230-9ac8-36295665af96"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 342,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "reportDir": "cypress\\reports\\html\\.jsons"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

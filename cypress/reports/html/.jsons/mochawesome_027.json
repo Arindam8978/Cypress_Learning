@@ -1,0 +1,109 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2023-11-01T11:17:30.879Z",
+    "end": "2023-11-01T11:17:32.017Z",
+    "duration": 1138,
+    "testsRegistered": 1,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "f71fcf9d-adec-496b-bbee-163fd7c7a043",
+      "title": "",
+      "fullFile": "cypress\\integration\\examples\\APITesting\\POSTCall.js",
+      "file": "cypress\\integration\\examples\\APITesting\\POSTCall.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "4797063f-284c-4773-8512-683130dfc866",
+          "title": "API Testing",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Approach-3 getting JSON data from fixture file",
+              "fullTitle": "API Testing Approach-3 getting JSON data from fixture file",
+              "timedOut": null,
+              "duration": 318,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": "{\n  \"title\": \"cypress-mochawesome-reporter-screenshots\",\n  \"value\": [\n    [\n      \"\\\\POSTCall.js\\\\API Testing -- Approach-3 getting JSON data from fixture file (failed).png\"\n    ],\n    [\n      \"\\\\POSTCall.js\\\\API Testing -- Approach-3 getting JSON data from fixture file (failed) (attempt 2).png\"\n    ]\n  ]\n}",
+              "code": "var data;\ncy.fixture('tourist').then(function (fixturesData) {\n  var requestBody = fixturesData;\n  cy.request({\n    method: 'POST',\n    url: 'http://restapi.adequateshop.com/api/Tourist',\n    body: requestBody\n  }).then(function (response) {\n    expect(response.status).to.eq(201);\n    expect(response.body.tourist_name).to.eq(requestBody.tourist_name);\n    expect(response.body.tourist_email).to.eq(requestBody.tourist_email);\n    expect(response.body.tourist_location).to.eq(requestBody.tourist_location);\n    expect(response.body).has.property('tourist_name', requestBody.tourist_name);\n    expect(response.body).to.have.property('tourist_email', requestBody.tourist_email);\n  });\n});",
+              "err": {
+                "message": "CypressError: `cy.request()` failed on:\n\nhttp://restapi.adequateshop.com/api/Tourist\n\nThe response we received from your web server was:\n\n  > 400: Bad Request\n\nThis was considered a failure because the status code was not `2xx` or `3xx`.\n\nIf you do not want status codes to cause failures pass the option: `failOnStatusCode: false`\n\n-----------------------------------------------------------\n\nThe request we sent was:\n\nMethod: POST\nURL: http://restapi.adequateshop.com/api/Tourist\nHeaders: {\n  \"Connection\": \"keep-alive\",\n  \"user-agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Cypress/13.3.1 Chrome/114.0.5735.289 Electron/25.8.4 Safari/537.36\",\n  \"accept\": \"*/*\",\n  \"accept-encoding\": \"gzip, deflate\",\n  \"content-type\": \"application/json\",\n  \"content-length\": 90\n}\nBody: {\"tourist_name\":\"MSD\",\"tourist_email\":\"INDCAP557862@gmail.com\",\"tourist_location\":\"India\"}\n\n-----------------------------------------------------------\n\nThe response we got was:\n\nStatus: 400 - Bad Request\nHeaders: {\n  \"cache-control\": \"no-cache\",\n  \"pragma\": \"no-cache\",\n  \"content-type\": \"application/json; charset=utf-8\",\n  \"expires\": \"-1\",\n  \"server\": \"Microsoft-IIS/10.0\",\n  \"x-aspnet-version\": \"4.0.30319\",\n  \"x-powered-by\": \"ASP.NET\",\n  \"date\": \"Wed, 01 Nov 2023 11:17:30 GMT\",\n  \"content-length\": \"53\"\n}\nBody: {\n  \"Message\": \"Pleae try with different email address!\"\n}\n\n\nhttps://on.cypress.io/request",
+                "estack": "CypressError: `cy.request()` failed on:\n\nhttp://restapi.adequateshop.com/api/Tourist\n\nThe response we received from your web server was:\n\n  > 400: Bad Request\n\nThis was considered a failure because the status code was not `2xx` or `3xx`.\n\nIf you do not want status codes to cause failures pass the option: `failOnStatusCode: false`\n\n-----------------------------------------------------------\n\nThe request we sent was:\n\nMethod: POST\nURL: http://restapi.adequateshop.com/api/Tourist\nHeaders: {\n  \"Connection\": \"keep-alive\",\n  \"user-agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Cypress/13.3.1 Chrome/114.0.5735.289 Electron/25.8.4 Safari/537.36\",\n  \"accept\": \"*/*\",\n  \"accept-encoding\": \"gzip, deflate\",\n  \"content-type\": \"application/json\",\n  \"content-length\": 90\n}\nBody: {\"tourist_name\":\"MSD\",\"tourist_email\":\"INDCAP557862@gmail.com\",\"tourist_location\":\"India\"}\n\n-----------------------------------------------------------\n\nThe response we got was:\n\nStatus: 400 - Bad Request\nHeaders: {\n  \"cache-control\": \"no-cache\",\n  \"pragma\": \"no-cache\",\n  \"content-type\": \"application/json; charset=utf-8\",\n  \"expires\": \"-1\",\n  \"server\": \"Microsoft-IIS/10.0\",\n  \"x-aspnet-version\": \"4.0.30319\",\n  \"x-powered-by\": \"ASP.NET\",\n  \"date\": \"Wed, 01 Nov 2023 11:17:30 GMT\",\n  \"content-length\": \"53\"\n}\nBody: {\n  \"Message\": \"Pleae try with different email address!\"\n}\n\n\nhttps://on.cypress.io/request\n    at <unknown> (http://localhost:51817/__cypress/runner/cypress_runner.js:133251:72)\n    at tryCatcher (http://localhost:51817/__cypress/runner/cypress_runner.js:1807:23)\n    at Promise._settlePromiseFromHandler (http://localhost:51817/__cypress/runner/cypress_runner.js:1519:31)\n    at Promise._settlePromise (http://localhost:51817/__cypress/runner/cypress_runner.js:1576:18)\n    at Promise._settlePromise0 (http://localhost:51817/__cypress/runner/cypress_runner.js:1621:10)\n    at Promise._settlePromises (http://localhost:51817/__cypress/runner/cypress_runner.js:1701:18)\n    at _drainQueueStep (http://localhost:51817/__cypress/runner/cypress_runner.js:2407:12)\n    at _drainQueue (http://localhost:51817/__cypress/runner/cypress_runner.js:2400:9)\n    at Async._drainQueues (http://localhost:51817/__cypress/runner/cypress_runner.js:2416:5)\n    at Async.drainQueues (http://localhost:51817/__cypress/runner/cypress_runner.js:2286:14)\nFrom Your Spec Code:\n    at Context.eval (cypress/integration/examples/APITesting/POSTCall.js:47:11)",
+                "diff": null
+              },
+              "uuid": "a4d7c0be-84cb-44c8-be4e-ebe9fcf5049a",
+              "parentUUID": "4797063f-284c-4773-8512-683130dfc866",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "a4d7c0be-84cb-44c8-be4e-ebe9fcf5049a"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 318,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "reportDir": "cypress\\reports\\html\\.jsons"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2023-10-29T08:17:43.365Z",
+    "end": "2023-10-29T08:17:49.628Z",
+    "duration": 6263,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "d29d6b93-acae-4817-92be-62b8e7ae2840",
+      "title": "",
+      "fullFile": "cypress\\integration\\examples\\APITesting copy.js",
+      "file": "cypress\\integration\\examples\\APITesting copy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "dda2b64f-55a0-481a-a64f-200bba748a85",
+          "title": "API Mocking",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Mock the API",
+              "fullTitle": "API Mocking Mock the API",
+              "timedOut": null,
+              "duration": 2337,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"https://rahulshettyacademy.com/angularAppdemo/\");\ncy.intercept('GET', 'https://rahulshettyacademy.com/Library/GetBook.php?AuthorName=shetty', function (req) {\n  req.url = \"https://rahulshettyacademy.com/Library/GetBook.php?AuthorName=malhotra\";\n  req[\"continue\"](function (res) {\n    // expect(res.statusCode).to.equal(403)\n  });\n}).as('dummyUrl');\ncy.get(\".btn-primary\").click();\ncy.wait('@dummyUrl');",
+              "err": {},
+              "uuid": "54948ab1-220b-4bed-b12b-ebd7004027e2",
+              "parentUUID": "dda2b64f-55a0-481a-a64f-200bba748a85",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "54948ab1-220b-4bed-b12b-ebd7004027e2"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 2337,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "reportDir": "cypress\\reports\\html\\.jsons"
+      },
+      "version": "6.2.0"
+    }
+  }
+}
