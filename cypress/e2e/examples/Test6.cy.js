@@ -301,37 +301,45 @@ it('Handling Iframe Approach - 3 (by using cypress-iframe plugin)', () =>{
 
 });
   
-it('mouseover Actions', () =>{
+it.only('mouseover Actions', () =>{
     cy.visit("https://the-internet.herokuapp.com/jqueryui/menu");
-    cy.contains("Enabled").trigger("mouseover");
-    cy.get("#ui-id-4").trigger("mouseover");
-    cy.wait(2000);
-    cy.get('a[href*=".pdf"]').click();
+    //cy.contains("Enabled").trigger("mouseover");
+    cy.contains("Enabled").click({force:true});
+    //cy.pause();
+    //cy.get('div.mouse-hover-content').invoke('show');
+    cy.contains("Downloads").trigger('mouseover');
+   // cy.contains("Downloads").invoke('show');
+    cy.contains("Downloads").click({force:true});
+    // cy.wait(2000);
     cy.get('a[href*=".csv"]').should("have.text","CSV");
+     cy.get('a[href*=".pdf"]').click();
+     
 
 });
 
 it('Shadow DOM element', () =>{
 
-   /*      cy.visit("https://selectorshub.com/xpath-practice-page/");
+         cy.visit("https://selectorshub.com/xpath-practice-page/");
  
         // 1st way 
-        //cy.get("#userName").shadow().find("#app2").shadow().find("#pizza").type("veg pizza");
+        cy.wait(10000);
+        cy.scrollTo('bottom');
+        cy.get("#userName").shadow().find("#app2").shadow().find("#pizza").type("veg pizza");
 
            // 2nd way  -- set  includeShadowDom true as global level at configuration file.  "includeShadowDom" : true
-           //cy.get("#pizza").type("veg pizza");
+        //    cy.get("#pizza").type("veg pizza");
 
-        // 3rd way  - pass "includeShadowDom" : true with get command in test steps level
-        cy.get("#pizza", {"includeShadowDom" : true}).type("veg pizza");  */
+        // // 3rd way  - pass "includeShadowDom" : true with get command in test steps level
+        // cy.get("#pizza", {"includeShadowDom" : true}).type("veg pizza");  
 
-        cy.visit("https://the-internet.herokuapp.com/shadowdom");
+       /*  cy.visit("https://the-internet.herokuapp.com/shadowdom");
         cy.get('span[slot="my-text"]', {"includeShadowDom" : true}).should("have.text", "Let's have some different text!");
         cy.get('ul[slot="my-text"] li:nth-child(1)').should("have.text", "Let's have some different text!");
         cy.get('ul[slot="my-text"] li:nth-child(2)').should("have.text","In a list!")  // for last two i set includeShadowDom" : true at global level in config file.
-
+ */
 });
 
-it.only('print all tables value', () =>{
+it('print all tables value', () =>{
     cy.visit("https://the-internet.herokuapp.com/challenging_dom");
     // cy.get('div[class="large-10 columns"] table').within(() => {
     //     cy.get('tr').first().within(() =>{
@@ -376,6 +384,43 @@ it.only('print all tables value', () =>{
 
 })
 
+it('Alert handling', () =>{
+    cy.visit("https://the-internet.herokuapp.com/context_menu");
+    cy.get("#hot-spot").rightclick();
+    cy.on('window:alert', (str) => {
+        expect(str).to.equal('You selected a context menu');
+    });
+})
+
+it('Handling dropdown', () =>{
+    cy.visit("https://the-internet.herokuapp.com/dropdown");
+    cy.get("#dropdown").select("1").should("have.value", "1");
+    
+    cy.get("#dropdown").select("1").invoke('text').then((getText) => {
+        getText = getText.trim().split("\n");
+        expect(getText[1].trim()).to.equal("Option 1");
+    })
+});
+
+it('Dynamic control', () =>{
+    cy.visit("https://the-internet.herokuapp.com/dynamic_controls");
+
+    //for checkbox
+    cy.get('input[type="checkbox"]').check();
+    cy.get('#checkbox-example>button').click();
+    cy.get('#message').should('have.text',"It's gone!");
+    cy.get('#checkbox-example>button').click();
+    cy.get('#message').should('have.text',"It's back!"); 
+
+    //for Textbox
+    cy.get('#input-example>input').should('be.disabled');
+    cy.get('#input-example>button').click();
+    cy.get('#input-example>input').should('be.enabled');
+    cy.get('#message').should('have.text',"It's enabled!");
+    cy.get('#input-example>button').click();
+    cy.get('#message').should('have.text',"It's disabled!");
+
+})
 
 });
 
