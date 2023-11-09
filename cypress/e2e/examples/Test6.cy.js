@@ -420,7 +420,11 @@ it('Dynamic control', () =>{
     cy.get('#input-example>button').click();
     cy.get('#message').should('have.text',"It's disabled!");
 
-})
+});
+
+it('Pop up validation',() => {
+   cy.visit("https://the-internet.herokuapp.com/entry_ad"); 
+});
 
 });
 
