@@ -239,7 +239,7 @@ it("Download the file", () =>{
     //cy.get("#content ul li:nth-child(17)").click();
     cy.wait(3000);
     cy.get('#content a[href*="myArora"]').click();
-})
+});
 
 it("checked and unchecked checkbox", () => {
 cy.visit("https://the-internet.herokuapp.com/");
@@ -249,7 +249,6 @@ cy.get('input[type="checkbox"]').eq(1).uncheck();
 cy.get('input[type="checkbox"]').eq(0).uncheck();
 cy.get('input[type="checkbox"]').eq(0).check();
 });
-
 
 it("Multiple domain" , () =>{
  
@@ -301,7 +300,7 @@ it('Handling Iframe Approach - 3 (by using cypress-iframe plugin)', () =>{
 
 });
   
-it.only('mouseover Actions', () =>{
+it('mouseover Actions', () =>{
     cy.visit("https://the-internet.herokuapp.com/jqueryui/menu");
     //cy.contains("Enabled").trigger("mouseover");
     cy.contains("Enabled").click({force:true});
@@ -382,7 +381,7 @@ it('print all tables value', () =>{
         });
       });
 
-})
+});
 
 it('Alert handling', () =>{
     cy.visit("https://the-internet.herokuapp.com/context_menu");
@@ -390,7 +389,7 @@ it('Alert handling', () =>{
     cy.on('window:alert', (str) => {
         expect(str).to.equal('You selected a context menu');
     });
-})
+});
 
 it('Handling dropdown', () =>{
     cy.visit("https://the-internet.herokuapp.com/dropdown");
@@ -424,8 +423,100 @@ it('Dynamic control', () =>{
 
 it('Pop up validation',() => {
    cy.visit("https://the-internet.herokuapp.com/entry_ad"); 
+   cy.get("#restart-ad").eq(0).click();
+   cy.get('div[class="modal-body"] p').should("have.text","It's commonly used to encourage a user to take an action (e.g., give their e-mail address to sign up for something or disable their ad blocker).");
+   cy.get('div[class="modal-footer"] p').click();
 });
 
+it.only('Verify facebook login in Multi-Domain Testing with cy.origin', () =>{
+    cy.visit("https://www.google.com/");
+    cy.get("#APjFqb").type("facebook {enter}");
+    //cy.get('a[href*="login"]').click();
+    //cy.contains("Log in").click()
+    cy.get('h3[class="LC20lb MBeuO DKV0Md"]').eq(0).click();
+    cy.wait(5000);
+    cy.origin("https://www.facebook.com",() =>{
+        cy.get('[data-testid="royal_email"]').type("abc");
+        cy.contains("Log in").invoke('text').then((getText) =>{
+            cy.log(getText);
+            expect(getText).to.equal("Log in");
+            
+        });
+        cy.contains("Log in").then((getTheText) =>{
+            cy.log(getTheText);
+        })
+        cy.get('[data-testid="royal_login_button"]').contains("Log in"); //This returns element with [data-testid="royal_login_button"] class having text Log in
+        cy.get("#email",{timeout:1000}).should("be.visible"); //I wait for element to be visible or enable
+        //cy.contains("Log in").should("have.text","");
+        //cy.contains("Log in").click();
+    })
+    cy.visit("https://www.google.com/");
+    
+});
+
+it('Geolocation', () =>{
+    cy.visit("https://the-internet.herokuapp.com/geolocation");
+    cy.get('.example button').click();
+    // cy.window().then((locationOfTheArea) =>{
+    //     cy.stub(locationOfTheArea,'prompt').returns('location');
+    // })
+    //cy.on('window:before:load', (win) => { cy.mockGeolocation(win, lat, long) })
+    
+    cy.contains("Latitude:").should("have.text","Latitude: ")
+
+    
+});
+
+it('Different mouseover actions',()=>{
+    cy.visit("https://the-internet.herokuapp.com/hovers");
+    cy.get('img[alt="User Avatar"]').eq(0).trigger("mouseover");
+    cy.contains("name: user1").should('have.text','name: user1');
+
+    cy.get('img[alt="User Avatar"]').eq(1).trigger("mouseover");
+    cy.contains("name: user2").should('have.text','name: user2');
+
+    cy.get('img[alt="User Avatar"]').eq(2).trigger("mouseover");
+    cy.contains("name: user3").should('have.text','name: user3');
+    
+    // number textbox
+    cy.visit("https://the-internet.herokuapp.com/inputs");
+    cy.get('input[type="number"]').type(1001);
+
+    //key pess
+    cy.visit("https://the-internet.herokuapp.com/key_presses");
+    cy.get("#target").type('{shift}{alt}hello');
+    cy.get("#target").clear().type('hello all {enter}');
+
+    //multiple window
+    cy.visit("https://the-internet.herokuapp.com/windows");
+    cy.get('a[href*="new"]').invoke("removeAttr", "target").click();
+    cy.contains("New Window").should("have.text","New Window");
+
+    //redirected link
+    cy.visit("https://the-internet.herokuapp.com/redirector");
+    cy.contains("here").click();
+    cy.contains("200").eq(0).click();
+    cy.contains("This page returned a 200 status code.").invoke('text').then((getText) => {
+        getText = getText.trim().split("\n");
+        expect(getText[0]).to.equal("This page returned a 200 status code.");
+    });
+
+});
+
+
+it('location example',() =>{
+    cy.visit("https://www.facebook.com");
+    cy.location('protocol').should('equal','https:');
+    cy.log(cy.location('host'));
+    cy.location().should(loc =>{
+        expect(loc.protocol).to.equal("https:");
+        expect(loc.hostname).to.eq("www.facebook.com");
+    });
+    //cy.get().filter() //Get the DOM elements that match a specific selector. Opposite of .not()
+
+
+    
+})
 });
 
  

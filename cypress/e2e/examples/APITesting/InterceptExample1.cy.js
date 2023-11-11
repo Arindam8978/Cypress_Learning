@@ -50,6 +50,7 @@ describe('Intercept Exmaple', () =>{
         cy.intercept('GET',"https://data.amazon.in/api/marketplaces/A21TJRUUN4KGV/taxonomies/buyback/offers-for-category?encryptedProductMerchantId=A1EWEIV3F4B24B&productSubcategory=1805560031&asin=B0BMGB2TPR&brand=Samsung&rbnHierarchyNodes=1805560031&buybackCategory=&productPrice=6528", {fixture:"AmazonRespose.json"}).as("comments")
         cy.visit("https://www.amazon.in/Samsung-Storage-MediaTek-Octa-core-Processor/dp/B0BMGB2TPR/ref=sr_1_1?crid=3QCKU8Z0EV20S&keywords=mobile&qid=1699366468&refinements=p_89%3ASamsung&rnid=3837712031&s=electronics&sprefix=mobile%2Caps%2C341&sr=1-1&th=1");
         cy.wait("@comments");   
+        cy.reload();
         cy.get('#title').invoke('text').then((getText) =>{
             cy.log(getText);
         })

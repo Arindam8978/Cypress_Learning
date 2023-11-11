@@ -26,7 +26,7 @@ it('data drive from fixture', function() {
     this.data.productName.forEach(function(element) {  // run multiple time based on the index present in the productName array in example.json file
         cy.selectProduct(element);
     });
-   
+   //Cypress.config(pageLoadTimeout);  //How can I read the value from Cypress Configuration file
     productPage.checkOutButton().click();
     checkOutPage.verifyThePrice();
     checkOutPage.checkOutButton().click();

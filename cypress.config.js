@@ -75,9 +75,9 @@ const browserify = require("@badeball/cypress-cucumber-preprocessor/browserify")
 
 module.exports = defineConfig({
   defaultCommandTimeout: 6000,
-  //chromeWebSecurity : false,
+  chromeWebSecurity : false,
   env : {   
-       url : "https://rahulshettyacademy.com/angularpractice/"     
+       url : "https://rahulshettyacademy.com/angularpractice/", 
   },
   retries : {
     runMode : 1,

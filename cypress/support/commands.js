@@ -22,6 +22,19 @@ Cypress.Commands.add("parseXlsx",(inputFile) => {
   return cy.task('parseXlsx', {filePath: inputFile})
 });
 
+Cypress.Commands.add("mockGeolocation", (windowObj, lat, long) => {
+  cy.stub(windowObj.navigator.geolocation, "getCurrentPosition", (cb) => {
+      return cb({ coords: { "latitude": lat, "longitude": long } });
+  })
+})
+
+Cypress.Commands.add('visitWithMockGeolocation', (url, latitude = 54, longitude = 39) => {
+  const mockGeolocation = (win, latitude, longitude) => {
+    cy.stub(win.navigator.geolocation, 'getCurrentPosition', cb => {
+      return cb({ coords: { latitude, longitude } });
+    });
+  };
+});
 // const xlsx = require('node-xlsx').default;
 // const fs = require('fs');
 // const path = require('path');
