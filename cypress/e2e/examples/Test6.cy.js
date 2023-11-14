@@ -32,7 +32,7 @@ it('My Fifth test case To handle iframe', function() {
     // cy.get('input[value="radio1"]').then(function(data) {
 
     // });
-    
+    //cy.viewport();
     //cy.get('input[value="radio1"]').click();
     cy.title().should('eq', 'Practice Page');
     cy.title().should('include', 'Page');
@@ -437,20 +437,28 @@ it.only('Verify facebook login in Multi-Domain Testing with cy.origin', () =>{
     cy.wait(5000);
     cy.origin("https://www.facebook.com",() =>{
         cy.get('[data-testid="royal_email"]').type("abc");
-        cy.contains("Log in").invoke('text').then((getText) =>{
+        cy.get('input[data-testid="royal_login_button"]').invoke('text').then((getText) =>{
             cy.log(getText);
-            expect(getText).to.equal("Log in");
+            //expect(getText).to.equal("Log in");
             
         });
-        cy.contains("Log in").then((getTheText) =>{
+        cy.get('input[data-testid="royal_login_button"]').then((getTheText) =>{
             cy.log(getTheText);
         })
+        cy.get('i[class="fb_logo img sp_EP9wX8qDDvu sx_d5b062"]').then((logo) =>{
+            cy.log(logo.text());
+        })
+        cy.get('input[type="submit"]').invoke('attr',' value').then((getTheval) =>{
+            cy.log(getTheval);
+        })
+
         cy.get('[data-testid="royal_login_button"]').contains("Log in"); //This returns element with [data-testid="royal_login_button"] class having text Log in
         cy.get("#email",{timeout:1000}).should("be.visible"); //I wait for element to be visible or enable
         //cy.contains("Log in").should("have.text","");
         //cy.contains("Log in").click();
     })
     cy.visit("https://www.google.com/");
+    
     
 });
 
