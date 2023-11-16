@@ -2,7 +2,7 @@
 //<reference types ="cypress-iframe" />
 describe('My Fifth Test Suite',{browser:'chrome'}, function() {          // describe - is the test suite and it contains test case 
 it('My Fifth test case To handle iframe', function() {
-
+ 
     // Iframe - To work on iframe first install the iframe using npm command  (npm install -D cypress-iframe )
     cy.visit("https://rahulshettyacademy.com/AutomationPractice/");
     cy.frameLoaded('#courses-iframe');  // load that frame and give the knowledge to the object 
