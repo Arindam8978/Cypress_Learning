@@ -1,0 +1,22 @@
+name: Cypress Tests
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Cypress Tests
+        run: |
+          # Replace 'spec-file.js' with the actual file or test case you want to run
+          npx cypress run --spec "Cypress_Learning/cypress/e2e/examples/Test7.cy.js"
