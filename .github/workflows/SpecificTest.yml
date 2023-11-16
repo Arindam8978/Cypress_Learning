@@ -3,18 +3,17 @@ name: Cypress Tests
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   test:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Install Dependencies
-        run: npm install
+      # - name: Install Dependencies
+      #   run: npm install
 
       - name: Run Cypress Tests
         run: |
