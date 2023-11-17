@@ -1,9 +1,8 @@
-name: example-cron
+name: schedule-cron
 on:
   schedule:
     # runs tests every day at 4am
-    # - cron: '0 13 * * *'
-    - cron: '40 12 * * *'
+    - cron: '0 13 * * *'
   workflow_dispatch:
 
 jobs:
@@ -13,7 +12,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Cypress nightly tests 🌃
+      - name: Cypress nightly tests 
         uses: cypress-io/github-action@v6
         with:
             # build: npm run build
