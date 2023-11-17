@@ -16,5 +16,4 @@ jobs:
       #   run: npm install
 
       - name: Run Cypress Tests
-        run: |
-          npx cypress run --spec "cypress/e2e/examples/Test7.cy.js"
+        run: npx cypress run --spec "cypress/e2e/examples/Test7.cy.js" --browser chrome
