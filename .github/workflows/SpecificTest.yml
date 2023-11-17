@@ -1,41 +1,20 @@
-name: Cypress Test
-on: push
+name: Cypress Tests
+
+on:
+  push:
+    branches:
+      - master
+
 jobs:
-  cypress-run:
-    runs-on: ubuntu-22.04
+  test:
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-      # Install npm dependencies, cache them correctly
-      # and run all Cypress tests
+      # - name: Install Dependencies
+      #   run: npm install
 
-      - name: Cypress run 
-        uses: cypress-io/github-action@v6
-
-      - name: Tests
-        run  : |
-           npx cypress run --spec "cypress/e2e/examples/Test7.cy.js" 
-
-
-
-# name: Cypress Tests
-
-# on:
-#   push:
-#     branches:
-#       - master
-
-# jobs:
-#   test:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout Repository
-#         uses: actions/checkout@v2
-
-#       # - name: Install Dependencies
-#       #   run: npm install
-
-#       - name: Run Cypress Tests
-#         run: |
-#           npx cypress run --spec "cypress/e2e/examples/Test7.cy.js"        
+      - name: Run Cypress Tests
+        run: |
+          npx cypress run --spec "cypress/e2e/examples/Test7.cy.js"
