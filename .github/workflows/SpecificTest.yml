@@ -20,10 +20,16 @@ jobs:
           browser: chrome
           spec : cypress/e2e/examples/Test7.cy.js
           headed : true
-
+          record : true
+        env:
+            CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+            # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  
       # - name: Install Dependencies
       #   run: npm install
 
       # - name: Run Cypress Tests
       #   run: |
       #     npx cypress run --spec "cypress/e2e/examples/Test7.cy.js" --browser chrome
+
+      
