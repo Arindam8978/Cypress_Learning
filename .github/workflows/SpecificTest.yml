@@ -17,4 +17,4 @@ jobs:
 
       - name: Run Cypress Tests
         run: |
-          npx cypress run --spec "Cypress_Learning/cypress/e2e/examples/Test7.cy.js"
+          npx cypress run --spec "cypress/e2e/examples/Test7.cy.js"
