@@ -1,25 +1,26 @@
 name: Cypress Parallel Tests
 on: push
 jobs:
-  install:
+#   install:
   # ... omitted install job from above
+  cypress-run:
     runs-on: ubuntu-22.04
     strategy:
       # don't fail the entire matrix on failure
-      fail-fast: false
+      fail-fast: true
       matrix:
         # run copies of the current job in parallel
         containers: [1, 2, 3, 4, 5]
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Download the build folder
-        uses: actions/download-artifact@v3
-
-      - name: Cypress run
-        uses: cypress-io/github-action@v6
-        with:
-          record: true
-          parallel: true
-          browser : chrome
+        steps:
+             - name: Checkout
+               uses: actions/checkout@v4
+             - name: Cypress run 
+               uses: cypress-io/github-action@v6
+               with:
+                browser: chrome
+                headed : true
+                record : true
+                parallel : true
+               env:
+                # CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+                # GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
