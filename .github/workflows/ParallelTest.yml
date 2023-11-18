@@ -1,9 +1,9 @@
 name: Cypress Parallel Tests
 on: push
 jobs:
-#   install:
+  install:
   # ... omitted install job from above
-  cypress-run:
+#   cypress-run:
     runs-on: ubuntu-22.04
     strategy:
       # don't fail the entire matrix on failure
