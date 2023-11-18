@@ -1,8 +1,8 @@
 name: schedule-cron
 on:
   schedule:
-    # runs tests every day at 4am
-    - cron: '0 13 * * *'
+    # runs tests every day at 7pm
+    - cron: '0 13 * * *'  
   workflow_dispatch:
 
 jobs:
