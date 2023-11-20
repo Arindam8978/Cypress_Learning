@@ -29,6 +29,7 @@ jobs:
           parallel: true
           group: 'QAAutomationLabs'
           browser : chrome
+          headed : false
         env:
           # pass the Cypress Cloud record key as an environment variable
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
