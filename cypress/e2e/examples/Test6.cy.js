@@ -1,4 +1,4 @@
-
+/// <reference types='cypress'/>
 //<reference types ="cypress-iframe" />
 describe('My Fifth Test Suite',{browser:'chrome'}, function() {          // describe - is the test suite and it contains test case 
 it('My Fifth test case To handle iframe', function() {
@@ -428,7 +428,7 @@ it('Pop up validation',() => {
    cy.get('div[class="modal-footer"] p').click();
 });
 
-it.only('Verify facebook login in Multi-Domain Testing with cy.origin', () =>{
+it('Verify facebook login in Multi-Domain Testing with cy.origin', () =>{
     cy.visit("https://www.google.com/");
     cy.get("#APjFqb").type("facebook {enter}");
     //cy.get('a[href*="login"]').click();
@@ -525,6 +525,51 @@ it('location example',() =>{
 
     
 })
+it('Filter the product based on price range', () =>{
+    cy.visit('https://www.amazon.in/');
+    cy.get('#twotabsearchtextbox').type('Mobile {enter}');
+    cy.get('.a-icon.a-icon-star-medium.a-star-medium-4').eq(0).click();
+    cy.get('#low-price').type('10000',{delay:1000});
+    cy.get('#high-price').type('20000');
+    cy.get('.a-button-input').click();
+    // cy.get('div[class*="puis-price-instructions"] span[class="a-price-whole"]').each((prices) =>{
+    //         const price = parseInt(prices.text().replace(/,/g,''));
+    //         expect(price).to.have.gte(10000);
+    //         expect(price).to.have.lte(20000);
+    // })
+
+    cy.get('div[class*="puis-price-instructions"] span[class="a-price-whole"]').each(($product) => {
+        // Extract the price of each product (replace 'price-selector' with the actual selector for the price)
+        const priceText = $product.text();
+        // Convert the price text to a number (you may need additional parsing depending on the actual format)
+        const price = parseFloat(priceText.replace('$', '').replace(',', ''));
+      
+        // Check if the price is within the specified range
+        //cy.wrap(price).should('be.gte', 10000).and('be.lte', 20000);
+        expect(price).to.be.gte(10000).and.to.be.lte(20000);
+
+      });
+    
+});
+
+it.only("Opens URLs", () => {
+    cy.visit('https://www.google.com'); 
+    cy.get('[name="q"]').type('facebook{enter}');
+    cy.get('a').contains('Facebook - log in or sign up').click();
+    // Suppress unhandled promise rejection error
+    cy.once('uncaught:exception', () => false);
+    cy.origin('https://www.facebook.com/', () => {
+      cy.visit('/');    
+      cy.reload();
+      //cy.wait(5000);
+      cy.get('[data-testid="open-registration-form-button"]').should('exist');
+    });
+   // cy.get('[data-testid="open-registration-form-button"]').should('exist');
+  //   cy.origin('https://www.facebook.com/',() => {
+   // cy.get('#email').type("hi");
+    //cy.get('a[data-testid="open-registration-form-button"]').should('exist');
+  //   })
+  });
 });
 
  

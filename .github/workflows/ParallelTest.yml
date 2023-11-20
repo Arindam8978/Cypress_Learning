@@ -1,35 +1,71 @@
-name: Cypress Parallel Tests
-on: [push]
+# name: Cypress Parallel Tests
+# on: [push]
+
+# jobs:
+#   cypress-run:
+#     name: Cypress Cloud Tests
+#     runs-on: ubuntu-latest
+#     container: cypress/browsers:node18.12.0-chrome107
+#     strategy:
+#       # when one test fails, DO NOT cancel the other
+#       # containers, because this will kill Cypress processes
+#       # leaving Cypress Cloud hanging ...
+#       # https://github.com/cypress-io/github-action/issues/48
+#       fail-fast: false
+#       matrix:
+#         # run 2 copies of the current job in parallel
+#         containers: [1, 2]
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v3
+
+#       # because of "record" and "parallel" parameters
+#       # these containers will load balance all found tests among themselves
+#       - name: Cypress Tests
+#         uses: cypress-io/github-action@v4
+#         with:
+#           record: true
+#           parallel: true
+#           group: 'QAAutomationLabs'
+#           browser : chrome
+#         env:
+#           # pass the Cypress Cloud record key as an environment variable
+#           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+#           # pass the GitHub token lets this action correctly
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
+
+name: Cypress Tests
+
+on: push
 
 jobs:
+  # install:
+  # ... omitted install job from above
+
   cypress-run:
-    name: Cypress Cloud Tests
-    runs-on: ubuntu-latest
-    container: cypress/browsers:node18.12.0-chrome107
+    runs-on: ubuntu-22.04
+    # needs: install
     strategy:
-      # when one test fails, DO NOT cancel the other
-      # containers, because this will kill Cypress processes
-      # leaving Cypress Cloud hanging ...
-      # https://github.com/cypress-io/github-action/issues/48
+      # don't fail the entire matrix on failure
       fail-fast: false
       matrix:
-        # run 2 copies of the current job in parallel
+        # run copies of the current job in parallel
         containers: [1, 2]
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      # because of "record" and "parallel" parameters
-      # these containers will load balance all found tests among themselves
-      - name: Cypress Tests
-        uses: cypress-io/github-action@v4
+      - name: Download the build folder
+        uses: actions/download-artifact@v3
+        with:
+          name: build
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
         with:
           record: true
           parallel: true
-          group: 'QAAutomationLabs'
-          browser : chrome
-        env:
-          # pass the Cypress Cloud record key as an environment variable
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          # pass the GitHub token lets this action correctly
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          group: 'UI-Chrome'
+          start: npm start
