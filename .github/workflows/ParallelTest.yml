@@ -2,11 +2,11 @@ name: Cypress Parallel Tests
 on: [push]
 
 jobs:
-  install:
-  # cypress-run:
+  # install:
+  cypress-run:
     # name: Cypress Cloud Tests
     runs-on: ubuntu-latest
-    # container: cypress/browsers:node18.12.0-chrome107
+    #  container: cypress/browsers:node18.12.0-chrome107
     strategy:
       # when one test fails, DO NOT cancel the other
       # containers, because this will kill Cypress processes
