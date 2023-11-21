@@ -649,9 +649,10 @@ it.only('Verify amazon login behaviour using origin',() =>{
         cy.get('#continue').click();
         cy.get('#ap_password').type('Arindam@123');
         cy.get('#signInSubmit').click();
-        cy.get('#nav-search').type('Mobile');
-        cy.get('nav-link-accountList-nav-line-1').invoke('text').then((ele) =>{
-            cy.log(ele);
+       // cy.get('#nav-search').type('Mobile');
+       cy.wait(2000);
+        cy.get('#nav-link-accountList-nav-line-1').invoke('text').then((ele) =>{
+            expect(ele).to.have('Hello, Arindam');
         }); 
     });
 
