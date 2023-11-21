@@ -552,7 +552,75 @@ it('Filter the product based on price range', () =>{
     
 });
 
-it.only("Opens URLs", () => {
+it('verify your account options in amazon website', function() {
+    
+    cy.visit('https://www.amazon.in/');
+    cy.get('#nav-link-accountList').click();
+    cy.get('#ap_email').type('dasarindam469@gmail.com');
+    cy.get('#continue').click();
+    cy.get('#ap_password').type('Arindam@123');
+    cy.get('#signInSubmit').click();
+    cy.get('#nav-link-accountList').trigger('mouseover');
+    cy.get('#nav-al-your-account>a:nth-child(2)').should('have.text', 'Your Account');
+    cy.get('#nav-al-your-account>a:nth-child(3)').should('have.text', 'Your Orders');
+    cy.get('#nav-al-your-account>a:nth-child(4)').should('have.text', 'Your Wish List');
+    cy.get('#nav-al-your-account>a:nth-child(5)').should('have.text', 'Keep shopping for');
+    cy.get('#nav-al-your-account>a:nth-child(6)').should('have.text', 'Your Recommendations');
+    //cy.get('#nav-al-your-account>a:nth-child(7)').should('have.text', 'Your Wallet');
+    cy.get('#nav-al-your-account>a:nth-child(8)').should('have.text', 'Your Prime Membership');
+    cy.get('#nav-al-your-account>a:nth-child(9)').should('have.text', 'Your Prime Video');
+    cy.get('#nav-al-your-account>a:nth-child(10)').should('have.text', 'Your Subscribe & Save Items');
+    cy.get('#nav-al-your-account>a:nth-child(11)').should('have.text', 'Memberships & Subscriptions');
+    cy.get('#nav-al-your-account>a:nth-child(12)').should('have.text', 'Your Seller Account');
+    cy.get('#nav-al-your-account>a:nth-child(13)').should('have.text', 'Manage Your Content and Devices');
+    cy.get('#nav-al-your-account>a:nth-child(14)').should('have.text', 'Your Free Amazon Business Account');
+    cy.get('#nav-al-your-account>a:nth-child(16)').should('have.text', 'Switch Accounts');
+    cy.get('#nav-al-your-account>a:nth-child(17)').should('have.text', 'Sign Out');
+
+});
+
+it('verify all the header options',() =>{
+    cy.visit('https://www.amazon.in/');
+    cy.get('#nav-link-accountList').click();
+    cy.get('#ap_email').type('dasarindam469@gmail.com');
+    cy.get('#continue').click();
+    cy.get('#ap_password').type('Arindam@123');
+    cy.get('#signInSubmit').click();
+    const arr = ["Today's Deals","Amazon miniTV","Sell","Gift Cards","Amazon Pay","Buy Again","Coupons",
+                "Gift Ideas	","Amazon Business","Health, Household & Personal Care","AmazonBasics","Browsing History","Customer Service","Prime","Home Improvement","Books","Arindam's Amazon.in","Best Sellers","Fashion","New Releases","Grocery & Gourmet Foods","Home & Kitchen","Computers"," Electronics ","Toys & Games","Baby","Mobiles","Subscribe & Save","Sports, Fitness & Outdoors","Beauty & Personal Care","Pet Supplies","Car & Motorbike","Video Games"];
+    cy.get('#nav-xshop>a').each((element,index) =>{
+           cy.wrap(element).should('have.text',arr[index]);
+    });
+});
+
+it('Verify your list option in amazon home page', () =>{
+        
+    cy.visit('https://www.amazon.in/');
+    cy.get('#nav-link-accountList').click();
+    cy.get('#ap_email').type('dasarindam469@gmail.com');
+    cy.get('#continue').click();
+    cy.get('#ap_password').type('Arindam@123');
+    cy.get('#signInSubmit').click();
+    cy.get('#nav-link-accountList').trigger('mouseover');
+    cy.get('#nav-flyout-wl-items div>a:nth-child(1)').each((value) =>{
+        value = value.text().trim();
+        expect(value).to.equal('Shopping List');
+    }) 
+    cy.get('#nav-flyout-wl-items div>a:nth-child(2)').each((value) =>{
+        value = value.text().trim();
+        expect(value).to.equal('Shopping List 1');
+    }); 
+    cy.get('#nav-flyout-wl-items div>a:nth-child(3)').each((value) =>{
+        value = value.text().trim();
+        expect(value).to.equal('Shopping List 2');
+    }); 
+    cy.get('#nav-flyout-wl-items div>a:nth-child(4)').each((value) =>{
+        value = value.text().trim();
+        expect(value).to.equal('Shopping List 3');
+    });
+});
+
+it("Opens URLs", () => {
     cy.visit('https://www.google.com'); 
     cy.get('[name="q"]').type('facebook{enter}');
     cy.get('a').contains('Facebook - log in or sign up').click();
@@ -570,6 +638,24 @@ it.only("Opens URLs", () => {
     //cy.get('a[data-testid="open-registration-form-button"]').should('exist');
   //   })
   });
+
+it.only('Verify amazon login behaviour using origin',() =>{
+    cy.visit('https://www.google.com'); 
+    cy.get('[name="q"]').type('amazon{enter}');
+    cy.get('.CCgQ5>span').click();
+    cy.origin('https://www.amazon.in/', function() {
+        cy.get('#nav-link-accountList').click();
+        cy.get('#ap_email').type('dasarindam469@gmail.com');
+        cy.get('#continue').click();
+        cy.get('#ap_password').type('Arindam@123');
+        cy.get('#signInSubmit').click();
+        cy.get('#nav-search').type('Mobile');
+        cy.get('nav-link-accountList-nav-line-1').invoke('text').then((ele) =>{
+            cy.log(ele);
+        }); 
+    });
+
+});  
 });
 
  

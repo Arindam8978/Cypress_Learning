@@ -3,7 +3,7 @@ on:
   schedule:
     # runs tests every day at 7pm
     # - cron: '0 13 * * *'  
-      - cron: '0 0 7,19 * *'  
+      - cron: '0 0 7,19 ? * * *'  
   workflow_dispatch:
 
 jobs:
