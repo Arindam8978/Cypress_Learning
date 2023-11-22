@@ -5,7 +5,9 @@ on:
     # - cron: '0 13 * * *'  
     # - cron: '0 0 7,19 ? * * *'  
     # - cron : '0 * * * *'   # run every hour
-    - cron : '0 */12 * * *'  # This cron will run the scheduler at every 12 hours.
+    # - cron : '0 */12 * * *'  # This cron will run the scheduler at every 12 hours.
+    # - cron : '30 10 * * 4' #Thursday at 10:30 am
+      - cron : '*/15 * * * *' # This will run the job every 15 minutes
   workflow_dispatch:
 
 jobs:
