@@ -113,7 +113,18 @@ module.exports = defineConfig({
     // specPattern : 'cypress/integration/examples/*.js'
     //specPattern : 'cypress/integration/examples/APITesting/*.js'
     //specPattern : 'cypress/integration/examples/BDD/*.feature'
+
   },
-"includeShadowDom" : true
+  // "specPattern": [
+  //   "Cypress_Learning\cypress\e2e\examples\Test7.cy.js",
+  //   "Cypress_Learning\cypress\e2e\examples\Test8.cy.js",
+  // ]
+
+  // "testFiles": [
+  //   "Test7.cy.js",
+  //   "Test8.cy.js",
+ 
+  //   ]
+//"includeShadowDom" : true
   
 });

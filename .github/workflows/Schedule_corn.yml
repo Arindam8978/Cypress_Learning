@@ -4,7 +4,7 @@ on:
     # runs tests every day at 7pm
     # - cron: '0 13 * * *'  
     # - cron: '0 0 7,19 ? * * *'  
-      - cron : '0 * * * *'   # run every hour
+    # - cron : '0 * * * *'   # run every hour
     # - cron: '0 */2 * * *'  # This will run the job every 2 hours
     # - cron: '0 */2 * * *'  # Every 2 hours
     # - cron: '0 */3 * * *'  # Every 3 hours
@@ -13,7 +13,7 @@ on:
     # - cron: '0 1-23/2 * * *'  # Every uneven hour
     # - cron : '0 */12 * * *'  # This cron will run the scheduler at every 12 hours.
     # - cron: '30 11 * * 5'  # This will run every Friday at 11:30 am
-    # - cron: '30 23 * * 5'  # This will run the job every Friday at 11:30 PM
+      - cron: '30 23 * * 5'  # This will run the job every Friday at 11:30 PM
     # - cron : '30 10 * * 4' #Thursday at 10:30 am
     # - cron : '*/15 * * * *' # This will run the job every 15 minutes
     # - cron: '*/30 * * * *'  # This will run the job every 30 minutes
