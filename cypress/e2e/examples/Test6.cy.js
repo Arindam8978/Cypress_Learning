@@ -1,4 +1,7 @@
 /// <reference types='cypress'/>
+
+const path = require("path");
+
 //<reference types ="cypress-iframe" />
 describe('My Fifth Test Suite',{browser:'chrome'}, function() {          // describe - is the test suite and it contains test case 
 it('My Fifth test case To handle iframe', function() {
@@ -167,16 +170,21 @@ cy.get().click();
 
 });
 
-it('How to read excel data',() =>{
+it.only('How to read excel data',() =>{
 
-    cy.parseXlsx("cypress\\fixtures\\ExcelData.xlsx").then((jsonData) =>{
-        const rowLength = Cypress.$(jsonData[0].data).length;
-        for (let index = 0; index < array.rowLength; index++) {
-          let jsonData = jsonData[index].data;
-          console.log(jsonData[index].data)
+    const xlsxPath = './cypress/fixtures/ExcelData.xlsx';
+    const jsonName = path.basename(xlsxPath).replace('.xlsx','.json')
+    cy.task('convertXlsxToJson',xlsxPath)
+    
+
+    // cy.parseXlsx("cypress\\fixtures\\ExcelData.xlsx").then((jsonData) =>{
+    //     const rowLength = Cypress.$(jsonData[0].data).length;
+    //     for (let index = 0; index < array.rowLength; index++) {
+    //       let jsonData = jsonData[index].data;
+    //       console.log(jsonData[index].data)
             
-        }
-    })
+    //     }
+    // })
 
     // const excelFilePath = 'cypress\\fixtures\\ExcelData.xlsx';
     // //const excelFilePath = "C:\\CypressLearning\\cypress\\fixtures\\ExcelData.xlsx"
@@ -639,7 +647,7 @@ it("Opens URLs", () => {
   //   })
   });
 
-it.only('Verify amazon login behaviour using origin',() =>{
+it('Verify amazon login behaviour using origin',() =>{
     cy.visit('https://www.google.com'); 
     cy.get('[name="q"]').type('amazon{enter}');
     cy.get('.CCgQ5>span').click();

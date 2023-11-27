@@ -1,4 +1,7 @@
 const { defineConfig } = require("cypress");
+const cucumber = require('cypress-cucumber-preprocessor').default
+ const XLSX = require('xlsx');
+//import * as XLSX from 'xlsx'
 // const {
 //   addCucumberPreprocessorPlugin,
 // } = require("@badeball/cypress-cucumber-preprocessor");
@@ -16,8 +19,8 @@ const { defineConfig } = require("cypress");
 //   return config;
 // }
 
-const preprocessor = require("@badeball/cypress-cucumber-preprocessor");
-const browserify = require("@badeball/cypress-cucumber-preprocessor/browserify");
+// const preprocessor = require("@badeball/cypress-cucumber-preprocessor");
+// const browserify = require("@badeball/cypress-cucumber-preprocessor/browserify");
 //const { config } = require("cypress/types/bluebird");
 
 // async function setupNodeEvents(on, config) {
@@ -87,6 +90,36 @@ module.exports = defineConfig({
   reporter: 'cypress-mochawesome-reporter',  // for html reports 
   e2e: {
     setupNodeEvents(on, config) {
+      on('task', {
+        convertXlsxToJson(filePath) {
+        
+        const workbook = XLSX.readFile(filePath)
+        const worksheet = workbook.Sheets[workbook.SheetNames[0]] 
+        const jsonData = XLSX.utils.sheet_to_json(worksheet)
+        return jsonData;
+        }
+        });
+
+
+     
+      on('task', {
+        convertXlsxToJson(filePath) {
+        const workbook = XLSX.readFile(filePath)
+        const worksheet = workbook.Sheets[workbook.SheetNames[0]]
+        //const jsonData
+        XLSX.utils.sheet_to_json(worksheet)
+        const fileName = path.basename(filePath, '.xlsx')
+        const jsonFilePath = `./cypress/fixtures/${fileName}.json` 
+        writeFileSync(jsonFilePath, JSON.stringify(jsonData, null, 2))
+        return null
+        },
+        });
+       
+   
+      
+        
+
+        // on('file:preprocessor', cucumber()) 
       // implement node event listeners here
       // on('task', {
       //   excelToJsonConverter(filepath){
@@ -109,7 +142,7 @@ module.exports = defineConfig({
 
     
      //pecPattern : 'cypress/e2e/examples/*.js'
-
+     //specPattern : "cypress/e2e/*.feature",
     // specPattern : 'cypress/integration/examples/*.js'
     //specPattern : 'cypress/integration/examples/APITesting/*.js'
     //specPattern : 'cypress/integration/examples/BDD/*.feature'
