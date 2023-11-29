@@ -133,7 +133,7 @@ module.exports = defineConfig({
     },
     // baseUrl : 'https://demoblaze.com/index.html/',
     baseUrl : 'https://www.amazon.in/',
-
+    testIsolation : false,
     //setupNodeEvents,
     // setupNodeEvents(on, config) {
     //   // implement node event listeners here
