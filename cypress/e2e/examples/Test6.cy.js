@@ -170,7 +170,7 @@ cy.get().click();
 
 });
 
-it.only('How to read excel data',() =>{
+it('How to read excel data',() =>{
 
     const xlsxPath = './cypress/fixtures/ExcelData.xlsx';
     const jsonName = path.basename(xlsxPath).replace('.xlsx','.json')
@@ -665,6 +665,15 @@ it('Verify amazon login behaviour using origin',() =>{
     });
 
 });  
+
+it.only('Verify the URL',() =>{
+    cy.visit('https://www.google.com/');
+    cy.get('#APjFqb').type('Codal {enter}');
+    cy.get('span[jscontroller="msmzHf"]>a h3').eq(0).click();
+    cy.wait(2000);
+    cy.url().should('include','https://www.codal.com/');
+    cy.title().should('include','Codal | Boundless Innovation');
+});
 });
 
  
