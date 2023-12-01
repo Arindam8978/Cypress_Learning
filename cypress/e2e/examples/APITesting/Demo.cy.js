@@ -18,18 +18,26 @@ describe('API Testing', () =>{
             // Log the response (optional)
             cy.log(response.body);
             console.log(response.body);
-          });
+            const firstUser = response.body.results[0];
+            expect(firstUser.gender).to.be.equal("male");
+            response.body.results.forEach((user, index) => {
+                // Assert the gender of each user
+                expect(user.gender).to.be.oneOf(['male', 'female']);
+                cy.log(`User ${index + 1} Gender: ${user.gender}`);
+              });
+        });
+    
 
     })
     })
 
-    it.only('Create the request', () => {
+    it('Create the request', () => {
         cy.fixture('userData').then((exampleData) =>{
             const fixtureData = exampleData.result;
                 cy.request({
                     method : 'POST',
                     url : `https://randomuser.me/api/`,
-                     body : fixtureData,
+                    body : fixtureData,
                      header : {
                         'Content-Type' : 'application/json'
                      }
